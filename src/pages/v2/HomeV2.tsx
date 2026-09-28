@@ -6,6 +6,7 @@ import { copyText, onClick, setText } from '@/lib/v2dom';
 import HomeRef from './HomeRef';
 import HomeTransactions from '@/components/v2/HomeTransactions';
 import type { Deposit } from '@/lib/types';
+import { preloadImages } from '@/lib/preload';
 
 const NOTICE_SEEN_KEY = 'hkwallet_notice_seen_v1';
 
@@ -18,6 +19,16 @@ export default function HomeV2() {
 
   const userId = walletUserId(currentUser?.phone);
 
+  useEffect(() => {
+    void preloadImages([
+      ...normal.map((banner) => banner.imageUrl),
+      ...notices.map((banner) => banner.imageUrl),
+      'https://i.ibb.co/hxbNq00C/Picsart-26-09-14-16-16-00-015.png',
+      'https://i.ibb.co/d4Q6VFrf/Picsart-26-09-14-16-12-00-574.png',
+      'https://i.ibb.co/VcfHLwhv/Picsart-26-09-14-16-18-46-405.png',
+    ]);
+  }, [normal, notices]);
+
   // Profile, balance and totals
   useEffect(() => {
     const root = rootRef.current;
@@ -28,7 +39,7 @@ export default function HomeV2() {
     const totalDeposit = mine.reduce((sum, d) => sum + d.amount, 0);
     setText(root, '.balance-value', String(Math.round(currentUser?.wallet ?? 0)));
     setText(root, '.deposit-value', String(Math.round(totalDeposit)));
-    setText(root, '.withdrawal-value', '0');
+      setText(root, '.withdrawal-value', '0');
   }, [currentUser, deposits, userId]);
 
   // Promotion carousel fed by the banners the admin uploads

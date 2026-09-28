@@ -25,8 +25,9 @@ const CSS = `
 .hkl .corner-wave { position:absolute; top:8.1%; right:calc(-2 * var(--unit)); width:calc(116 * var(--unit)); height:calc(313 * var(--unit)); overflow:hidden; opacity:0; pointer-events:none; }
 .hkl .corner-wave img { position:absolute; top:calc(-36 * var(--unit)); right:calc(-102 * var(--unit)); width:calc(375 * var(--unit)); height:calc(375 * var(--unit)); max-width:none; }
 .hkl .decorations { position:absolute; inset:0; opacity:0; pointer-events:none; }
-.hkl .decoration { position:absolute; left:var(--x); top:var(--y); width:calc(var(--size) * var(--unit)); height:calc(var(--size) * var(--unit)); border-radius:50%; background:var(--color); opacity:var(--opacity, 0.75); animation:hkl-drift var(--duration, 6s) ease-in-out var(--delay, 0s) infinite; animation-play-state:paused; }
+.hkl .decoration { position:absolute; left:var(--x); top:var(--y); width:calc(var(--size) * var(--unit)); height:calc(var(--size) * var(--unit)); border-radius:50%; background:var(--color); opacity:var(--opacity, 0.75); animation:hkl-dot-drop var(--duration, 6s) ease-in-out var(--delay, 0s) infinite; animation-play-state:paused; }
 .hkl .decoration.line { height:calc(2.8 * var(--unit)); border-radius:999px; }
+.hkl .decoration.line { animation-name:hkl-line-sway; }
 .hkl .decoration.dashed { height:calc(1.5 * var(--unit)); border-radius:0; background:repeating-linear-gradient(90deg, var(--color) 0 calc(4 * var(--unit)), transparent calc(4 * var(--unit)) calc(7 * var(--unit))); }
 .hkl .card-entrance { position:relative; display:grid; place-items:center; margin-top:calc(-8 * var(--unit)); opacity:0; }
 .hkl .card-float { animation:hkl-card-float 6.5s ease-in-out 1400ms infinite; animation-play-state:paused; }
@@ -51,7 +52,8 @@ const CSS = `
 @keyframes hkl-wave-enter { from { opacity:0; transform:translateX(calc(20 * var(--unit))); } to { opacity:1; transform:translateX(0); } }
 @keyframes hkl-card-enter { 0% { opacity:0; transform:translateY(calc(24 * var(--unit))) scale(0.78); } 65% { opacity:1; transform:translateY(calc(-3 * var(--unit))) scale(1.018); } 100% { opacity:1; transform:translateY(0) scale(1); } }
 @keyframes hkl-card-float { 0%, 100% { transform:translateY(0); } 50% { transform:translateY(calc(-5 * var(--unit))); } }
-@keyframes hkl-drift { 0%, 100% { transform:translate(0, 0); } 50% { transform:translate(calc(2 * var(--unit)), calc(-4 * var(--unit))); } }
+@keyframes hkl-dot-drop { 0%, 100% { opacity:.35; transform:translateY(calc(-4 * var(--unit))) scale(.82); } 50% { opacity:var(--opacity, .75); transform:translateY(calc(4 * var(--unit))) scale(1); } }
+@keyframes hkl-line-sway { 0%, 100% { transform:translateX(calc(-3 * var(--unit))); } 50% { transform:translateX(calc(4 * var(--unit))); } }
 @media (prefers-reduced-motion: reduce) {
   .hkl *, .hkl *::before, .hkl *::after { animation:none !important; }
   .hkl .splash-content { transition:opacity 160ms linear; transform:translateY(-36vh) !important; }
