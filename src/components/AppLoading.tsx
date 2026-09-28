@@ -1,7 +1,6 @@
 type AppLoadingProps = {
   label?: string;
   success?: boolean;
-  cover?: boolean;
 };
 
 const css = `

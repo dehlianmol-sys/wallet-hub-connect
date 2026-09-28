@@ -7,6 +7,7 @@ import AuthHints, { usernameRules, phoneRules, passwordRules, isInvalid } from '
 import { normalizeRefCode, REF_CODE_KEY } from '@/lib/referral';
 import { generateOtp, sendOtpSms } from '@/lib/otp';
 import SecurityVerify from '@/components/SecurityVerify';
+import AppLoading from '@/components/AppLoading';
 
 const OTP_RATE_PREFIX = 'hk_otp_rate_';
 
@@ -167,7 +168,7 @@ export default function Register({ referralCode }: { referralCode?: string } = {
         <button className="hk-primary" type="submit" disabled={loading}>Sign Up</button>
       </form>
       <SecurityVerify open={verifyOpen} onClose={() => setVerifyOpen(false)} onVerified={(token) => { setVerifyOpen(false); void sendOtp(token); }} />
-      {loading && <div className="hk-loading-overlay"><div className="hk-loading-box"><span className="hk-mini-spinner" /><span>Loading...</span></div></div>}
+      {loading && <AppLoading />}
     </main>
   );
 }

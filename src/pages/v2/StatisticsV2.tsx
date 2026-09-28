@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from '@/lib/router-compat';
 import { useStore } from '@/lib/store';
 import { css } from './css/StatisticsRef';
+import AppLoading from '@/components/AppLoading';
 
 const money = (value: number) => `₹ ${value.toFixed(2)}`;
 
@@ -58,7 +59,7 @@ export default function StatisticsV2() {
         <button className={`stats-selling${upi?.isSelling ? ' active' : ''}`} disabled={!upi || busy} onClick={() => setConfirming(true)}>{upi?.isSelling ? 'Closed Selling' : 'Start Selling'}</button>
       </main>
        {confirming && <div className="stats-dialog-backdrop"><div className="stats-dialog" role="dialog" aria-modal="true"><h2>Are you sure?</h2><p>Are you sure you want to {upi?.isSelling ? 'stop' : 'start'} selling?</p><div className="stats-dialog-actions"><button onClick={() => setConfirming(false)}>Cancel</button><button className="confirm" onClick={() => void changeSelling()}>Yes</button></div></div></div>}
-       {busy && <div className="stats-loading" role="status"><span className="stats-spinner" /><span>Loading...</span></div>}
+       {busy && <AppLoading />}
     </div>
   );
 }

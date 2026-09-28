@@ -22,7 +22,7 @@ export default function HomeV2() {
   useEffect(() => {
     void preloadImages([
       ...normal.map((banner) => banner.imageUrl),
-      ...notices.map((banner) => banner.imageUrl),
+      ...(notices ?? []).map((banner) => banner.imageUrl),
       'https://i.ibb.co/hxbNq00C/Picsart-26-09-14-16-16-00-015.png',
       'https://i.ibb.co/d4Q6VFrf/Picsart-26-09-14-16-12-00-574.png',
       'https://i.ibb.co/VcfHLwhv/Picsart-26-09-14-16-18-46-405.png',
