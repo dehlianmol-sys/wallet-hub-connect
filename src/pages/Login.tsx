@@ -6,6 +6,7 @@ import { APP_LOGO, APP_LOGO_FALLBACK } from '@/lib/brand';
 import AppSplash from '@/components/AppSplash';
 import CachedImage from '@/components/CachedImage';
 import AuthHints, { phoneRules, passwordRules, isInvalid } from '@/components/AuthHints';
+import AppLoading from '@/components/AppLoading';
 
 export default function Login({ showSplash = false }: { showSplash?: boolean }) {
   const { login } = useStore();
@@ -77,18 +78,12 @@ export default function Login({ showSplash = false }: { showSplash?: boolean }) 
           <label><input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} /> Remember Me</label>
         </div>
         <label className="hk-agreement"><input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} /> Agree<span>"User Privacy Agreement"</span></label>
-        <button className="hk-primary" type="submit" disabled={loading}>Sign In</button>
+        <button className="hk-primary" type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Sign In'}</button>
         <div className="hk-forgot"><Link to="/forgot-password">Forget Password</Link></div>
       </form>
       <span className="hk-version">v1.2.1</span>
-       {signedIn && (
-         <div className="hk-signin-result-layer" role="status" aria-live="polite">
-           <div className="hk-signin-result">
-             <svg viewBox="0 0 96 72" aria-hidden="true"><path d="M10 36 37 62 86 10" /></svg>
-             <span>Signed in</span>
-           </div>
-         </div>
-       )}
+       {loading && !signedIn && <AppLoading />}
+       {signedIn && <AppLoading label="Signed in" success />}
     </main>
   );
 }

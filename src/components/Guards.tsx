@@ -1,14 +1,10 @@
 import { Navigate, useLocation } from '@/lib/router-compat';
 import type { ReactNode } from 'react';
 import { useStore } from '@/lib/store';
+import AppLoading from './AppLoading';
 
 function LoadingScreen() {
-  return (
-    <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column", gap: 12, alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,.82)" }} role="status">
-      <span className="animate-spin" style={{ width: 34, height: 34, border: "3px solid rgba(255,255,255,.25)", borderTopColor: "#fff", borderRadius: "50%" }} />
-      <span style={{ color: "#f2f4f5", fontSize: 13 }}>Loading…</span>
-    </div>
-  );
+  return <AppLoading />;
 }
 
 export function RequireUser({ children }: { children: ReactNode }) {

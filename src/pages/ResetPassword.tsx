@@ -5,6 +5,7 @@ import { useToast } from '@/lib/toast';
 import AuthHints, { phoneRules, passwordRules, isInvalid } from '@/components/AuthHints';
 import { generateOtp, sendOtpSms } from '@/lib/otp';
 import SecurityVerify from '@/components/SecurityVerify';
+import AppLoading from '@/components/AppLoading';
 
 const OTP_RATE_PREFIX = 'hk_reset_otp_rate_';
 
@@ -159,7 +160,7 @@ export default function ResetPassword() {
         </button>
       </form>
       <SecurityVerify open={verifyOpen} onClose={() => setVerifyOpen(false)} onVerified={(token) => { setVerifyOpen(false); void sendOtp(token); }} />
-      {loading && <div className="hk-loading-overlay"><div className="hk-loading-box"><span className="hk-mini-spinner" /><span>Loading...</span></div></div>}
+      {loading && <AppLoading />}
     </main>
   );
 }

@@ -30,3 +30,6 @@
 - [x] Shorten cold-start loading and remove the extra startup delay.
 - [x] Reuse centrally loaded banners and reduce avoidable rerenders.
 - [x] Replace duplicate sign-in loading with one confirmation and restore the animated launch screen.
+- [x] Unify every user/admin loading state with the reference sign-in overlay.
+- [x] Match Home layout, rewards, leaderboard, and transactions to the supplied app screenshots.
+- [x] Prevent partially rendered images and verify mobile behavior.

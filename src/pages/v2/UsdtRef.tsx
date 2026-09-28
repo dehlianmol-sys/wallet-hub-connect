@@ -213,14 +213,6 @@ export default function UsdtRef() {
         </main>
       </div>
       <div className="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden />
-      <div className="loading-layer" id="loading" role="dialog" aria-modal="true" aria-labelledby="loading-label" tabIndex={-1} hidden>
-        <div className="loading-box">
-          <div className="spinner" aria-hidden="true" />
-          <span id="loading-label">
-            Loading
-          </span>
-        </div>
-      </div>
     </>
   );
 }

@@ -153,6 +153,11 @@
   }
 }
 
+.hk-cached-image { position: relative; display: inline-block; overflow: hidden; }
+.hk-cached-image > img { width: 100%; height: 100%; display: block; opacity: 0; object-fit: inherit; }
+.hk-cached-image > img.is-loaded { opacity: 1; }
+.hk-cached-image > .hk-img-skeleton { position: absolute; inset: 0; display: block; }
+
 /* Supplied Skypay loading and authentication screens. */
 .hk-auth {
   --hk-primary: #12976a;

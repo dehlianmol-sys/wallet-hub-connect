@@ -6,6 +6,7 @@ import { getUserTeam, getTeamLevels, type TeamStats, type TeamLevels } from '@/l
 import { copyText, onClick, setText, wireBack, wireTabs } from '@/lib/v2dom';
 import TeamRef from './TeamRef';
 import { openExternalUrl } from '@/lib/nativeBridge';
+import AppLoading from '@/components/AppLoading';
 
 const EMPTY_STATS: TeamStats = {
   todayMembers: 0,
@@ -30,6 +31,7 @@ export default function TeamV2() {
   const [levels, setLevels] = useState<TeamLevels>(EMPTY_LEVELS);
   const [levelOpen, setLevelOpen] = useState(false);
   const [activeLevel, setActiveLevel] = useState<'B' | 'C'>('B');
+  const [loading, setLoading] = useState(true);
 
   const userId = currentUser?.id ?? '';
 
@@ -45,7 +47,8 @@ export default function TeamV2() {
         return getTeamLevels(userId, t.code);
       })
       .then((lv) => { if (active && lv) setLevels(lv); })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
   }, [userId]);
 
@@ -184,6 +187,7 @@ export default function TeamV2() {
   return (
     <div ref={rootRef}>
       <TeamRef />
+      {loading && <AppLoading />}
     </div>
   );
 }

@@ -189,6 +189,23 @@ export default function HomeRef({ transactions }: { transactions?: ReactNode }) 
           <button className="image-card rewards-card" id="newcomer-rewards" type="button" aria-label="Newcomer rewards, not started. Multi-Day Task. View reward requirements.">
             <img src="https://i.ibb.co/VcfHLwhv/Picsart-26-09-14-16-18-46-405.png" alt="Newcomer rewards. Not started. You need to complete at least one order to start." width="640" height="640" draggable={false} />
           </button>
+          <section className="leaderboard" aria-labelledby="leaderboard-title">
+            <h2 id="leaderboard-title"><span aria-hidden="true">🏆</span> Payout Rewards Leaderboard</h2>
+            <div className="leaderboard-head">
+              <strong>Daily Ranking</strong>
+              <span className="leaderboard-time">Time Left&nbsp; ◷ <b>15H : 31M : 53S</b></span>
+            </div>
+            <p>Personal successful payment amount</p>
+            <p className="leaderboard-reset">◷&nbsp; Resets every day 00:00</p>
+            <div className="leaderboard-podium" aria-label="Top daily rankings">
+              <div><span className="rank silver">2</span><span className="rank-avatar">R</span><b>R***y</b><strong>₹35000</strong><em>₹5000</em></div>
+              <div className="winner"><span className="rank gold">1</span><span className="rank-avatar">R</span><b>R***a</b><strong>₹36000</strong><em>₹10000</em></div>
+              <div><span className="rank bronze">3</span><span className="rank-avatar">S</span><b>S***3</b><strong>₹32000</strong><em>₹3000</em></div>
+            </div>
+            <div className="leaderboard-row"><b>4</b><span>9***1</span><strong>₹31800</strong><em>₹1000</em></div>
+            <div className="leaderboard-row"><b>5</b><span>A***a</span><strong>₹31300</strong><em>₹1000</em></div>
+            <div className="your-rank"><b>Your Rank<br /><strong>--</strong></b><span className="rank-avatar">Y</span><span><b>You</b><br /><strong>₹0</strong></span></div>
+          </section>
           <section className="transactions" id="transactions" aria-labelledby="transactions-title">
             <div className="section-heading">
               <h2 id="transactions-title">

@@ -7,6 +7,7 @@ import { eligibleTools } from '@/lib/paymentTools';
 import SelectToolModal from '@/components/v2/SelectToolModal';
 import { css } from './css/OrderPayRef';
 import { isOrderExpired, isOrderSubmitted, orderCode } from '@/lib/orderStatus';
+import AppLoading from '@/components/AppLoading';
 
 const CopyIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -347,13 +348,7 @@ export default function OrderPayV2() {
         </section>
       </div>
 
-      <div className="loading-layer" hidden={!loadingText}>
-        <div className="loading-box">
-          <div className="spinner" aria-hidden="true" hidden={submittedTick} />
-          <div className="submitted-icon" aria-hidden="true" hidden={!submittedTick}>✓</div>
-          <div>{loadingText}</div>
-        </div>
-      </div>
+      {loadingText && <AppLoading label={loadingText} success={submittedTick} />}
       <div className={`toast${toast ? ' is-visible' : ''}`} role="status" aria-live="polite">{toast}</div>
 
       <SelectToolModal

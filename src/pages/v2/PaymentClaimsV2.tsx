@@ -6,6 +6,7 @@ import { eligibleTools } from '@/lib/paymentTools';
 import SelectToolModal from '@/components/v2/SelectToolModal';
 import { css } from './css/PaymentClaimsRef';
 import { isOrderPending } from '@/lib/orderStatus';
+import AppLoading from '@/components/AppLoading';
 
 type FilterKey = 'top' | 'small' | 'medium' | 'large';
 
@@ -269,11 +270,7 @@ export default function PaymentClaimsV2() {
       </div>
 
 
-      <div className="loading-layer" hidden={!busy}>
-        <div className="loading-box" role="status" aria-live="polite">
-          <span className="spinner" aria-hidden="true" /><span>Loading...</span>
-        </div>
-      </div>
+      {busy && <AppLoading />}
       <div className="toast" role="status" aria-live="polite" hidden={!toast}>{toast}</div>
 
       <SelectToolModal

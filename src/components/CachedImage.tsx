@@ -27,9 +27,11 @@ export default function CachedImage({
   ...rest
 }: CachedImageProps) {
   const [resolved, setResolved] = useState(() => getMemoryCachedImage(src) ?? '');
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let alive = true;
+    setLoaded(false);
     if (!src) return;
     const cached = getMemoryCachedImage(src);
     if (cached) {
@@ -42,22 +44,22 @@ export default function CachedImage({
     return () => { alive = false; };
   }, [src, cacheKey]);
 
-  if (!resolved) {
-    return <span className={`hk-img-skeleton ${className} ${skeletonClassName}`} aria-hidden="true" />;
-  }
-
   return (
-    <img
-      src={resolved}
-      alt={alt}
-      className={className}
-      {...rest}
-      onError={(event) => {
-        rest.onError?.(event);
-        if (fallbackSrc && event.currentTarget.src !== new URL(fallbackSrc, window.location.href).href) {
-          event.currentTarget.src = fallbackSrc;
-        }
-      }}
-    />
+    <span className={`hk-cached-image ${className}`}>
+      {!loaded && <span className={`hk-img-skeleton ${skeletonClassName}`} aria-hidden="true" />}
+      {resolved && <img
+        src={resolved}
+        alt={alt}
+        className={loaded ? 'is-loaded' : ''}
+        {...rest}
+        onLoad={(event) => { setLoaded(true); rest.onLoad?.(event); }}
+        onError={(event) => {
+          rest.onError?.(event);
+          if (fallbackSrc && event.currentTarget.src !== new URL(fallbackSrc, window.location.href).href) {
+            event.currentTarget.src = fallbackSrc;
+          }
+        }}
+      />}
+    </span>
   );
 }
