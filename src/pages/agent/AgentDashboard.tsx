@@ -16,6 +16,7 @@ import {
   type DateRange,
 } from '../../lib/agents';
 import { useToast } from '../../lib/toast';
+import AppLoading from '@/components/AppLoading';
 
 type Preset = 'today' | 'yesterday' | 'last7' | 'all' | 'custom';
 
@@ -103,9 +104,7 @@ export default function AgentDashboard() {
   }, [summary.members, search]);
 
   if (loading || !agent) {
-    return (
-      <div className="min-h-[100dvh] flex items-center justify-center bg-[#0b1e4f] text-white">Loading…</div>
-    );
+    return <AppLoading />;
   }
 
   const link = referralLink(agent.agentId);

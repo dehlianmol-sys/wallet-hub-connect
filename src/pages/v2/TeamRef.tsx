@@ -260,23 +260,9 @@ export default function TeamRef() {
               <p id="emptyMessage">
                 No more data
               </p>
-              <p className="inline-loading" id="levelLoading" hidden>
-                <span className="small-spinner" aria-hidden="true" />
-                <span>
-                  Loading...
-                </span>
-              </p>
             </div>
           </div>
         </main>
-      </div>
-      <div className="loading-overlay" id="loadingOverlay" role="status" aria-live="polite" aria-label="Loading level details" hidden>
-        <div className="loading-modal">
-          <span className="spinner" aria-hidden="true" />
-          <span>
-            Loading...
-          </span>
-        </div>
       </div>
       <div className="toast" id="toast" role="status" aria-live="polite" hidden />
     </>

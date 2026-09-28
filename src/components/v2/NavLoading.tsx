@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouterState } from '@tanstack/react-router';
-
-const css = `
-.hk-navload { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: rgba(0,0,0,.82); }
-.hk-navload-box { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.hk-navload-spin { width: 34px; height: 34px; border: 3px solid rgba(255,255,255,.25); border-top-color: #ffffff; border-radius: 50%; animation: hk-navload-spin 900ms linear infinite; }
-.hk-navload-text { color: #f2f4f5; font-size: 13px; letter-spacing: .2px; }
-@keyframes hk-navload-spin { to { transform: rotate(360deg); } }
-`;
+import AppLoading from '@/components/AppLoading';
 
 /**
  * Only appears when a page genuinely stalls (slow connection), never on a
@@ -28,15 +21,5 @@ export default function NavLoading() {
 
   if (!visible) return null;
 
-  return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-      <div className="hk-navload" role="status" aria-live="polite">
-        <div className="hk-navload-box">
-          <span className="hk-navload-spin" />
-          <span className="hk-navload-text">Loading…</span>
-        </div>
-      </div>
-    </>
-  );
+  return <AppLoading />;
 }
