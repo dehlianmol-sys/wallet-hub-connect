@@ -44,9 +44,12 @@ function RootEntry() {
   return <AppEntry />;
 }
 
+// Splash shows only once per app open; returning to Home never replays it.
+let startupSplashDone = false;
+
 function AppEntry() {
   const { currentUser, loading } = useStore();
-  const [startupSplash, setStartupSplash] = useState(true);
+  const [startupSplash, setStartupSplash] = useState(!startupSplashDone);
   const [timeDone, setTimeDone] = useState(false);
 
   const finishSplash = useCallback(() => {
@@ -55,13 +58,15 @@ function AppEntry() {
 
   useEffect(() => {
     if (startupSplash && timeDone && !loading) {
+      startupSplashDone = true;
       setStartupSplash(false);
     }
   }, [startupSplash, timeDone, loading]);
 
   if (startupSplash) return <AppSplash onFinish={finishSplash} />;
 
-  if (loading) return <AppSplash />;
+  if (loading && !startupSplashDone) return <AppSplash />;
+  if (loading) return null;
 
 
 
