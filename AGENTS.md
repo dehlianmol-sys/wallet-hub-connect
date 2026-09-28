@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Show the branded Skypay splash on every fresh root mount and keep it visible until account loading finishes, so startup never falls back to an unbranded black screen.
