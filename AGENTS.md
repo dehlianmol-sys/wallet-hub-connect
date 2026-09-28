@@ -9,4 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Show the branded Skypay splash on every fresh root mount and keep it visible until account loading finishes, so startup never falls back to an unbranded black screen.
+- Show the two-step Skypay splash (spinner logo, then card reveal) only once per app open, never again when returning to Home; data preloads during it.
