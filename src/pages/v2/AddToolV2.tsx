@@ -20,6 +20,7 @@ import { useWalletPin } from '@/lib/pin';
 import { getAppInstall, markDownloaded, markInstalled } from '@/lib/appInstalls';
 import { useBanners } from '@/lib/v2data';
 import { openInExternalChrome, openExternalUrl } from '@/lib/nativeBridge';
+import AppLoading from '@/components/AppLoading';
 
 type Phase = 'gate' | 'empty' | 'loading' | 'choose' | 'setup' | 'phone' | 'upi';
 
@@ -296,11 +297,7 @@ export default function AddToolV2({ onDone, startAtChoose = false }: { onDone?: 
             <p className="empty-message">No wallets yet</p>
             <button className="primary-button add-button" type="button" onClick={startAdd}>Add</button>
           </div>
-          {phase === 'loading' && (
-            <div id="loading-state" style={{ display: 'block' }} role="status" aria-live="polite">
-              <div className="loading-box"><span className="spinner" aria-hidden="true" /><span>Loading</span></div>
-            </div>
-          )}
+          {phase === 'loading' && <AppLoading />}
         </section>
       )}
 
